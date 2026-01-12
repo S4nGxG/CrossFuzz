@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# --- CẤU HÌNH ---
 DATASET_DIR="./contracts30"
 RESULT_DIR="./results30_10_1"
 LOG_DIR="./logs"
 SOLC_BIN=$(which solc)
 TARGET_VER="0.4.26"
-INNER_TIMEOUT=600   # chỉ còn timeout bên trong fuzzer
+INNER_TIMEOUT=600   
 
 mkdir -p "$RESULT_DIR"
 mkdir -p "$LOG_DIR"
@@ -44,7 +43,6 @@ for file in "$DATASET_DIR"/*.sol; do
     echo "    -> Contract Name tim thay: $real_contract_name"
     echo "    -> Log se luu tai: $log_file"
 
-    # --- CHẠY CROSSFUZZ (không timeout) ---
     if python3 CrossFuzz.py \
         "$file" \
         "$real_contract_name" \
